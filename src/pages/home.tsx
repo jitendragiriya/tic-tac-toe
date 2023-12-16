@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import TicButton from "@/components/button";
 import Players from "@/components/players";
 import { WINNING_PATTERNS } from "@/constants";
