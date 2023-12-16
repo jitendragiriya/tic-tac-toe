@@ -5,10 +5,6 @@ import { WINNING_PATTERNS } from "@/constants";
 import { useGameContext } from "@/context/gameContext";
 import React from "react";
 
-export interface turnData {
-  [key: string]: String;
-}
-
 const TicHome = () => {
   const {
     turn,
