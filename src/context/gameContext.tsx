@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, {
   SetStateAction,
   createContext,
@@ -29,14 +29,10 @@ interface gameContextType {
 
 const GameContext = createContext<gameContextType | undefined>(undefined);
 
-/**
- *
- * toggleTheme : function
- */
 const useGameContext = () => {
   const context = useContext(GameContext);
   if (!context) {
-    throw new Error("useThemeContext must be used within a ThemeProvider");
+    throw new Error("useGameContext must be used within a GameProvider");
   }
   return context;
 };

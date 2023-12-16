@@ -3,7 +3,7 @@ import TicButton from "@/components/button";
 import Players from "@/components/players";
 import { WINNING_PATTERNS } from "@/constants";
 import { useGameContext } from "@/context/gameContext";
-import React, { useState } from "react";
+import React from "react";
 
 export interface turnData {
   [key: string]: String;
