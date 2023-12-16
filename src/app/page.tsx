@@ -1,14 +1,10 @@
 import { GameProvider } from "@/context/gameContext";
 import TicHome from "@/pages/home";
-import Image from "next/image";
-
 
 export default function Home() {
   return (
     <GameProvider>
       <main className="flex flex-col items-center justify-center h-screen duration-100 bg-gradient-to-r from-indigo-500 to-pink-500 hue-rotate-[360deg]">
-        {/* <Image src={"/img/painting-mountain-lake-with-mountain-background.jpg"}  className="fixed top-0 left-0 z-0" alt="" fill/> */}
- 
         <TicHome />
       </main>
     </GameProvider>
