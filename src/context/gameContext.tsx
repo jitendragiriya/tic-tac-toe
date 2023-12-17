@@ -75,8 +75,8 @@ const GameProvider: React.FC<Props> = (props) => {
       const data = JSON.parse(wins);
       setWinner(data);
     }
-  }, []);
-  console.log(0);
+  }, []); 
+  
   useEffect(() => {
     if (winner.gameOver) {
       localStorage.setItem(
