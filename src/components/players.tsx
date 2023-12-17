@@ -1,13 +1,15 @@
+import { useGameContext } from "@/context/gameContext";
 import React from "react";
 
 const Players = ({ turn }: { turn: boolean }) => {
+  const {winner} = useGameContext()
   return (
     <div className="flex items-center justify-between mb-4">
-      <p className={`bg-[#ff7722] rounded-sm shadow-sm uppercase sm:text-xl text-white px-1 ${turn ? "" :"animate-bounce"}`}>
+      <p className={`bg-[#fff] rounded-sm shadow-sm uppercase sm:text-xl text-[#ff7722] px-1 ${!turn && !winner.gameOver ? "animate-bounce" :""}`}>
         Player O
       </p>
 
-      <p className={`bg-[#ff7722] rounded-sm shadow-sm uppercase sm:text-xl text-white px-1 ${turn ? "animate-bounce" :""}`}>
+      <p className={`bg-[#fff] rounded-sm shadow-sm uppercase sm:text-xl text-[#ff7722] px-1 ${turn && !winner.gameOver? "animate-bounce" :""}`}>
         Player X
       </p>
     </div>
