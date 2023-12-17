@@ -15,7 +15,7 @@ const TicHome = () => {
     occupied,
     setOccupied,
     winner,
-    setWinner, 
+    setWinner,  
   } = useGameContext();
 
   //my turn

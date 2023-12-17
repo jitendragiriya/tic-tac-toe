@@ -31,12 +31,21 @@ interface gameContextType {
   setWinner: Dispatch<SetStateAction<winnerType>>;
 }
 
-const GameContext = createContext<gameContextType | undefined>(undefined);
+const GameContext = createContext<gameContextType>({
+  turn: true,
+  changeTurn: () => {},
+  occupied: {},
+  setOccupied: () => {},
+  turnCount: 0,
+  setTurnCount: () => {},
+  winner: { gameOver: false, X: 0, O: 0, winnerPatter: [] },
+  setWinner: () => {},
+});
 
 const useGameContext = () => {
   const context = useContext(GameContext);
   if (!context) {
-    throw new Error("useGameContext must be used within a GameProvider");
+    throw new Error("context is not loaded");
   }
   return context;
 };
@@ -67,7 +76,7 @@ const GameProvider: React.FC<Props> = (props) => {
       setWinner(data);
     }
   }, []);
-
+  console.log(0);
   useEffect(() => {
     if (winner.gameOver) {
       localStorage.setItem(

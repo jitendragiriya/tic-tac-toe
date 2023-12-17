@@ -18,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <GameProvider>{children}</GameProvider>
+        {
+          GameProvider ? <GameProvider>{children} </GameProvider> : null
+        }
+       
       </body>
     </html>
   );
