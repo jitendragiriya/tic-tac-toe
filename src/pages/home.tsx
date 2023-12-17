@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import TicButton from "@/components/button";
 import Players from "@/components/players";
+import Score from "@/components/score";
 import { WINNING_PATTERNS } from "@/constants";
 import { useGameContext } from "@/context/gameContext";
 import React from "react";
@@ -14,13 +15,13 @@ const TicHome = () => {
     occupied,
     setOccupied,
     winner,
-    setWinner,
+    setWinner, 
   } = useGameContext();
 
   //my turn
   const myButton = (row: number, col: number) => {
     const isOccupied = occupied[`${row}${col}`];
-    if (isOccupied || winner) {
+    if (isOccupied) {
       return;
     }
 
@@ -43,7 +44,21 @@ const TicHome = () => {
             occupied[WINNING_PATTERNS[index][0]] ===
               occupied[WINNING_PATTERNS[index][2]]
           ) {
-            setWinner(occupied[WINNING_PATTERNS[index][2]]);
+            if (occupied[WINNING_PATTERNS[index][2]] === "X")
+              setWinner({
+                X: winner.X + 1,
+                O: winner.O,
+                gameOver: true,
+                winnerPatter: WINNING_PATTERNS[index],
+              });
+            else {
+              setWinner({
+                X: winner.X,
+                O: winner.O + 1,
+                gameOver: true,
+                winnerPatter: WINNING_PATTERNS[index],
+              });
+            }
           }
         }
       });
@@ -61,14 +76,15 @@ const TicHome = () => {
 
   // reset/ restart the game
   const resetTheGame = () => {
-    setWinner("");
     changeTurn();
+    setWinner({ gameOver: false, X: winner.X, O: winner.O, winnerPatter: [] });
     setOccupied({});
   };
 
   return (
     <>
       <div className="w-fit z-10">
+        <Score />
         <Players turn={turn} />
         <div className="p-0.5 sm:p-1 rounded-md flex flex-col items-center justify-center bg-[#fff]">
           {[...Array(3)].map((rw, row) => (
@@ -80,6 +96,10 @@ const TicHome = () => {
                   row={row}
                   col={col}
                   myTurn={myButton}
+                  isWin={
+                    winner.gameOver &&
+                    winner.winnerPatter.includes(`${row}${col}`)
+                  }
                 />
               ))}
             </div>
@@ -90,7 +110,7 @@ const TicHome = () => {
             className="bg-[#ff7722] rounded-md capitalize text-white px-6 py-1"
             onClick={resetTheGame}
           >
-            {winner ? "continue" : "Reset"}
+            {winner.gameOver ? "continue" : "Reset"}
           </button>
         </div>
       </div>

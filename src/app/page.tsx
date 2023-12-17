@@ -2,7 +2,7 @@ import TicHome from "@/pages/home";
 
 export default function Home() {
   return (
-      <main className="flex flex-col items-center justify-center h-screen duration-100 bg-gradient-to-r from-indigo-500 to-pink-500 hue-rotate-[360deg]">
+      <main className="flex flex-col items-center justify-center h-screen duration-100 bg-indigo-500">
         <TicHome />
       </main> 
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
